@@ -34,8 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
             return NotificationListener(
               onNotification: (ScrollNotification scrollInfo){
-                if(scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent && !postProvider.isLoading ){
-                     postProvider.fetchPost();
+                final nextPageTrigger = 0.8 * scrollInfo.metrics.maxScrollExtent;
+                if(scrollInfo.metrics.pixels > nextPageTrigger && !postProvider.isLoading ){
+                  postProvider.fetchPost();
                 }
                 return false;
               },
